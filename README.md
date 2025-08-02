@@ -39,8 +39,6 @@ For Hardware:
 ### Implementation
 For Software:
 # Installation
-# Clone the repository
-git clone https://github.com/yourusername/broke-boujee-motors.git
 
 # Run
 [commands]
@@ -49,50 +47,21 @@ git clone https://github.com/yourusername/broke-boujee-motors.git
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
-
+(https://drive.google.com/drive/folders/1pGDqTmLLSFLwQVvVBqoT_o3ZBo2L3woQ?usp=sharing)
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
+![Workflow]
+Homepage → Details Page → Broken dreams
 For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+(https://drive.google.com/file/d/1Wdb_9wK7iLnJ1jxUe-WKUjYixe3nMYKU/view?usp=sharing)*Explain what the video demonstrates*
 
-# Additional Demos
-[Add any extra demo materials/links]
+
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+Shahimjith P A – Frontend development, video integration, idea execution
+Abin P M – Code generation, humor injection, and deployment guidance
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
