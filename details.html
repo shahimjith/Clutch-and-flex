@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Car Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .car-image {
+      max-height: 400px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .price {
+      font-weight: bold;
+      color: green;
+    }
+    .offer-price {
+      color: red;
+      text-decoration: line-through;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+    }
+    .close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      z-index: 20;
+    }
+    .video-wrapper {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <a href="index.html" class="btn btn-secondary mb-3">&larr; Back to Listings</a>
+    <div id="carDetails" class="position-relative"></div>
+  </div>
+
+  <script>
+    const brands = ["Rolls-Royce", "Bentley", "Lamborghini", "Ferrari", "Porsche", "Aston Martin", "Maserati", "BMW", "Mercedes-Benz", "Audi"];
+    const models = ["Phantom", "Continental GT", "Revuelto", "812 Superfast", "911 Turbo S", "DB11", "Quattroporte", "i7", "S-Class", "RS7"];
+
+    const allCars = Array.from({ length: 10 }, (_, i) => {
+      const brand = brands[i];
+      const model = models[i];
+      const id = `${brand.toLowerCase().replace(/\s+/g, '-')}-${model.toLowerCase().replace(/\s+/g, '-')}-${i}`;
+      const image = `images/${id}.jpg`;
+      const price = `₹${80 - (i % 5)} Cr`;
+      const offer = `₹${35 + (i % 5)} Cr`;
+      const video = `videos/${model.toLowerCase().replace(/\s+/g, '')}.mp4`;
+      return { id, brand, name: model, price, offer, image, video };
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const carId = params.get("id");
+    const car = allCars.find(c => c.id === carId);
+
+    if (!car) {
+      document.getElementById("carDetails").innerHTML = `<h3 class="text-danger">Car not found.</h3>`;
+    } else {
+      document.getElementById("carDetails").innerHTML = `
+        <div class="card mb-4 video-wrapper">
+          <img src="${car.image}" alt="${car.name}" class="card-img-top car-image" onerror="this.src='images/placeholder.jpg'">
+          <div class="card-body">
+            <h3 class="card-title">${car.brand} ${car.name}</h3>
+            <p class="card-text">
+              <span class="offer-price">${car.price}</span><br>
+              <span class="price">${car.offer}</span>
+            </p>
+            <p>This luxury vehicle combines performance, design, and comfort like no other. Drive the ultimate expression of engineering and elegance.</p>
+            <button class="btn btn-success" onclick="showVideo('${car.video}')">Buy Now</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function showVideo(videoPath) {
+      const overlay = document.createElement('div');
+      overlay.className = 'video-overlay';
+
+      overlay.innerHTML = `
+        <div class="video-container">
+          <button class="btn btn-light close-btn" onclick="closeVideo(this)">✖</button>
+          <video controls autoplay width="100%" class="rounded shadow">
+            <source src="${videoPath}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      `;
+
+      document.querySelector('.video-wrapper').appendChild(overlay);
+    }
+
+    function closeVideo(btn) {
+      const overlay = btn.closest('.video-overlay');
+      overlay.remove();
+    }
+  </script>
+</body>
+</html>

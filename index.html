@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .car-card {
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .car-card:hover {
+      transform: scale(1.03);
+    }
+    .car-image {
+      height: 200px;
+      object-fit: cover;
+    }
+    .price {
+      font-weight: bold;
+      color: rgb(0, 247, 49);
+    }
+    .offer-price {
+      color: red;
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <h1 class="mb-4 text-center">Clutch & Flex</h1>
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by name or brand...">
+      </div>
+    </div>
+
+    <div class="row" id="carContainer">
+      <!-- Car cards will be injected here -->
+    </div>
+  </div>
+
+  <script>
+    const brands = ["Rolls-Royce", "Bentley", "Lamborghini", "Ferrari", "Porsche", "Aston Martin", "Maserati", "BMW", "Mercedes-Benz", "Audi"];
+    const models = ["Phantom", "Continental GT", "Revuelto", "812 Superfast", "911 Turbo S", "DB11", "Quattroporte", "i7", "S-Class", "RS7"];
+
+    const allCars = Array.from({ length: 10 }, (_, i) => {
+      const brand = brands[i % brands.length];
+      const model = models[i % models.length];
+      const id = `${brand.toLowerCase().replace(/\s+/g, '-')}-${model.toLowerCase().replace(/\s+/g, '-')}-${i}`;
+      const image = `images/${id}.jpg`;
+      return {
+        id,
+        brand,
+        name: model,
+        price: `₹${80 - (i % 5)} Cr`,
+        offer: `₹${35 + (i % 5)} Cr`,
+        image
+      };
+    });
+
+    function displayCars(filteredCars) {
+      const container = document.getElementById('carContainer');
+      container.innerHTML = '';
+      let cardsHTML = '';
+      filteredCars.forEach(car => {
+        cardsHTML += `
+          <div class="col-md-3 mb-4">
+            <div class="card car-card">
+              <img src="${car.image}" class="card-img-top car-image" alt="${car.name}" onerror="this.src='images/placeholder.jpg'" />
+              <div class="card-body">
+                <h6 class="card-title">${car.brand} ${car.name}</h6>
+                <p class="card-text mb-1">
+                  <span class="offer-price">${car.price}</span><br>
+                  <span class="price">${car.offer}</span>
+                </p>
+                <button class="btn btn-sm btn-outline-primary" onclick="viewDetails('${car.id}')">View Details</button>
+              </div>
+            </div>
+          </div>`;
+      });
+      container.innerHTML = cardsHTML;
+    }
+
+    function viewDetails(carId) {
+      window.location.href = `details.html?id=${carId}`;
+    }
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      const filtered = allCars.filter(car =>
+        car.name.toLowerCase().includes(query) ||
+        car.brand.toLowerCase().includes(query)
+      );
+      displayCars(filtered);
+    });
+
+    displayCars(allCars);
+  </script>
+</body>
+</html>
