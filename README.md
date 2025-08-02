@@ -55,7 +55,7 @@ For Hardware:
 
 ### Project Demo
 # Video
-(https://drive.google.com/file/d/1Wdb_9wK7iLnJ1jxUe-WKUjYixe3nMYKU/view?usp=sharing)*Explain what the video demonstrates*
+(https://drive.google.com/file/d/1Wdb_9wK7iLnJ1jxUe-WKUjYixe3nMYKU/view?usp=sharing)
 
 
 
